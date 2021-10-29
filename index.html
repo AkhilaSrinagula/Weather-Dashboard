@@ -27,7 +27,7 @@
       <h1>Weather Dashboard</h1>
     </header>
 
-    <main class="flex-row justify-space-between">
+    <nav class="flex-row justify-space-between">
       <div class="col-sm-4">
         <div class="card" style="width: 28rem">
           <div class="card-body">
@@ -39,16 +39,15 @@
                     <button class=" btn bg-primary text-light" id="searchButton"><i class="fa fa-search"></i></button>
                 </div>
           </div>
+          </div>
         </div>
+    </div>
         <!-- <button class=" btn btn-primary" type="button" id="clear-history">Clear history</button> -->
-
-
-        <ul class="list-group"></ul>
+    </nav>
         
-        
-      </div>
+      
       <div class="col mt-4 mr-5 " id="weather-info">
-        <div class="card currentCard pb-2 pt-1">
+        <div class="card currentCard pb-2 pt-1" style="width: 30vw"> 
           <h5 class="card-title mt-2 ml-5">Current Forecast</h5>
           <div class="row">
             <div class="col mt-4">
@@ -62,7 +61,7 @@
           </div>
         </div>
       </div>
-    </main>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
