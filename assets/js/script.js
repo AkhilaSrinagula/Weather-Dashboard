@@ -1,42 +1,84 @@
-const app = {
-    init: () => {
-        
-        document.addEventListener('click', app.fetchWeather);
+$(document).ready(function () {
+  var cityName = "";
+  var searchHistoryList = document.querySelector("#searchHistoryList");
+  var searchedCities = [];
+  var searchButton = $("searchButton");
 
-},
-fetchWeather: () => {
-    let city = document.getElementById('addCity').value;
-let search = $('#searchButton');
-    let key = 'b0c8bb28d93f9d08fb9250393ad62966';
-    let lang = 'en';
-    let units = 'imperial';
-
-    // fetch(url)
-    // .then((resp) => {
-    //     if (!resp.ok) throw new Error(resp.statusText);
-    //     return resp.json();
-    //   })
-    //   .then((data) => {
-    //     app.showWeather(data);
-    //   })
-    //   .catch(console.err);
-      search.click(function () {
-          var searchForm = $('.form-control').val();
-          var forecastUrl ="https://api.openweathermap.org/data/2.5/weather?q=" + searchForm + "&appid=" + key + "&units=units";
-          if (searchForm == "") {
-            console.log(searchForm);
-        } $.ajax({
-            url: forecastUrl,
-            method: "GET"
-        }).then(function (response) {
-            var cityName = $(".list-group").addClass("list-group-item").removeClass("d-none");
-            cityName.append("<li>" + response.name + "</li>");
-        
-            // var local = localStorage.setItem(cityCountTotal, response.name);
-            cityCountTotal += 1;
-      },
-},
-
-},
+loadcityName();
+function loadcityName() {
+  searchedCities = JSON.parse(localStorage.getItem("lscityName"));
+  if (searchedCities) {
+    weatherData(searchedCities[searchedCities.length - 1])
+  } else {
+    searchedCities = [];
+  }
 }
-app.init();
+//Dynamically building City List under search box
+function citySearchList() {
+  $("#cityList").empty();
+  var count = 0;
+  for (var i = searchedCities.length-1; i >= 0; i--) {
+    if (count++ < 9) {
+      var newBtn = $("<button>").attr("class", "listBtn btn").attr("city-name", searchedCities[i]).text(searchedCities[i]);
+    $("#cityList").append(newBtn);
+    }
+  }
+  $(".listBtn").on("click", function (event) {
+    var cityName = $(this).text();
+    weatherData(cityName);
+  })
+}
+function saveCity() {
+  localStorage.setItem("lscity", JSON.stringify(searchedCities));
+}
+
+// Loads city on refresh only add cities if not in the list
+function weatherData(cityName) {
+  $("#addcityName").val("");
+  if (searchedCities.includes(cityName) === false) {
+    searchedCities.push(cityName);
+    saveCity();  
+  }
+    citySearchList();
+    weatherToday(cityName);
+    forecastDeck(cityName);
+}
+
+  var currentDay = moment().format("MMMM Do, YYYY");
+  $("#currentDay").text(currentDay);
+
+  var dayOne = moment().add(1, "days").format("l");
+  $("#dayOne").text(dayOne.slice(0, 9));
+
+  var dayTwo = moment().add(2, "days").format("l");
+  $("#dayTwo").text(dayTwo.slice(0, 9));
+
+  var dayThree = moment().add(3, "days").format("l");
+  $("#dayThree").text(dayThree.slice(0, 9));
+
+  var dayFour = moment().add(4, "days").format("l");
+  $("#dayFour").text(dayFour.slice(0, 9));
+
+  var dayFive = moment().add(5, "days").format("l");
+  $("#dayFive").text(dayFive.slice(0, 9));
+
+
+  document.getElementById("searchButton").addEventListener("click", function(){
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Austin&appid=b0c8bb28d93f9d08fb9250393ad62966')
+    .then(response => response.json())
+    .then(function(data){
+  
+  
+      console.log(data)
+  
+  
+  
+      
+    });
+  
+  });
+
+  });
+
+
+
