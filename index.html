@@ -23,92 +23,116 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <header>
-      <h1>Weather Dashboard</h1>
-    </header>
+    <div class="container-fluid">
+      <header>
+        <h1>Weather Dashboard</h1>
+      </header>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="card-body text-center">
+              <div class="card" style="width: 28rem">
+                <div class="card-body bg-light">
+                  <h5 class="card-subtitle mb-2">
+                    <strong>Search for a City:</strong>
+                  </h5>
+                  <div class="input-group mb-3">
+                    <input
+                      type="text"
+                      id="addCity"
+                      aria-label="City Search"
+                      class="form-control searchInput"
+                      aria-describedby="search-button"
+                      placeholder="Enter City Here"
+                    />
 
-    <nav class="flex-row justify-space-between">
-        <div class="col-sm-4">
-          <div class="card" style="width: 28rem">
-            <div class="card-body">
-              <h5 class="card-title pt-1"><strong>Search for a City:</strong></h5>
-              
-              <div class="input-group mb-3">
-                  <input type="text" id="addCity" aria-label="City Search" class="form-control" aria-describedby="search-button" placeholder="Enter City Here">
-                  <div class="input-group-append">
-                      <button class=" btn bg-primary text-light" id="searchButton"><i class="fa fa-search"></i></button>
+                    <div class="input-group-append">
+                      <button
+                        class="btn bg-primary text-light"
+                        id="searchButton"
+                      >
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
                   </div>
-            </div>
+                  <ul id="searchHistoryList" class="list-group"></ul>
+                </div>
+              </div>
             </div>
           </div>
-      </div>
-          <!-- <button class=" btn btn-primary" type="button" id="clear-history">Clear history</button> -->
-      </nav>
-      <ul id="searchHistoryList"></ul>
-      <div class="col-md-8 " id="currentLocation">
-        <div id="currentWeather">
-            <div class="header2" id="currentDay"></div> 
-            <h4 class="city" id="city">City: </h4>
-            <img id="weatherIcon" class="weatherIcon"></img>
-            <h5 class="temp" id="temp">Temp: </h5>
-            <h5 class="wind" id="wind">Wind: </h5>
-            <h5 class="humidity" id="humidity">Humidity: </h5>
-            <h5 class="uvIndex" id="uvIndex">UV Index: </h5>
+
+          
+          <div class="col mt-4 mr-5"id="currentLocation">
+            <div class="card currentCard pb-5 pt-4"id="currentWeather">
+              <div class="header2" id="currentDay"></div> 
+                <h5 class="card-title mt-2 ">Current Forecast:</h5>
+                <img id="weatherIcon" class="weatherIcon"></img>
+            <p class="temp" id="temp">Temp: </p>
+            <p class="wind" id="wind">Wind: </p>
+            <p class="humidity" id="humidity">Humidity: </p>
+            <p class="uvIndex" id="uvIndex">UV Index: </p>
+            </div>
         </div>
-        <hr class="d-sm-none">
-      <div class="row-2">
-        <div class="col-sm-12" id="fiveDays">
-            <h5 class="fiveDayForecast">5 Day Forecast </h5>
-          <div class="card-deck">
-            <div class="card" id="card1">
-                <div class="card-body">
-                    <h5 id="dayOne"></h5>
-                <img id="weatherIconOne" id="weatherIconOne"></img>
-                <p class="temp" id="tempOne">Temp: </p>
-                <p class="wind" id="windOne">Wind: </p>
-                <p class="humid" id="humidOne">Humidity: </p>
+
+        
+        <div class="col-sm-12">
+          <div class=" mt-5" id="fiveDays">
+              <h5 class="fiveDayForecast">5-Day Forecast: </h5>
+            <div class="card-deck">
+                <div class="card  " id="card1">
+                  <div class="card-body">
+                      <h5 id="dayOne"></h5>
+                  <img id="weatherIconOne" id="weatherIconOne"></img>
+                  <p class="temp" id="tempOne">Temp: </p>
+                  <p class="wind" id="windOne">Wind: </p>
+                  <p class="humid" id="humidOne">Humidity: </p>
+                  </div>
+              </div>
+              <div class="card" id="card2">
+                  <div class="card-body">
+                    <h5 id="dayTwo"></h5>
+                    <img id="weatherIconTwo" id="weatherTwo"></img>
+                    <p class="temp" id="tempTwo">Temp: </p>
+                    <p class="wind" id="windTwo">Wind: </p>
+                    <p class="humid" id="humidTwo">Humidity: </p>
+                  </div>
                 </div>
+                <div class="card" id="card3">
+                  <div class="card-body">
+                    <h5 id="dayThree"></h5>
+                    <img id="weatherIconThree" id="weatherIconThree"></img>
+                    <p class="temp" id="tempThree">Temp: </p>
+                    <p class="wind" id="windThree">Wind: </p>
+                    <p class="humid" id="humidThree">Humidity: </p>
+                  </div>
+                </div>
+                <div class="card" id="card4">
+                  <div class="card-body">
+                    <h5 id="dayFour"></h5>
+                    <img id="weatherIconFour" id="weatherIconFour"></img>
+                    <p class="temp" id="tempFour">Temp: </p>
+                    <p class="wind" id="windFour">Wind: </p>
+                    <p class="humid" id="humidFour">Humidity: </p>
+                  </div>
+                </div>
+                <div class="card" id="card5">
+                  <div class="card-body">
+                    <h5 id="dayFive"></h5>
+                    <img id="weatherIconFive" id="weatherIconFive"></img>
+                    <p class="temp" id="tempFive">Temp: </p>
+                    <p class="wind" id="windFive">Wind: </p>
+                    <p class="humid" id="humidFive">Humidity:</p>
+                  </div>
+                </div>
+           
             </div>
-            <div class="card" id="card2">
-                <div class="card-body">
-                  <h5 id="dayTwo"></h5>
-                  <img id="weatherIconTwo" id="weatherTwo"></img>
-                  <p class="temp" id="tempTwo">Temp: </p>
-                  <p class="wind" id="windTwo">Wind: </p>
-                  <p class="humid" id="humidTwo">Humidity: </p>
-                </div>
-              </div>
-              <div class="card" id="card3">
-                <div class="card-body">
-                  <h5 id="dayThree"></h5>
-                  <img id="weatherIconThree" id="weatherIconThree"></img>
-                  <p class="temp" id="tempThree">Temp: </p>
-                  <p class="wind" id="windThree">Wind: </p>
-                  <p class="humid" id="humidThree">Humidity: </p>
-                </div>
-              </div>
-              <div class="card" id="card4">
-                <div class="card-body">
-                  <h5 id="dayFour"></h5>
-                  <img id="weatherIconFour" id="weatherIconFour"></img>
-                  <p class="temp" id="tempFour">Temp: </p>
-                  <p class="wind" id="windFour">Wind: </p>
-                  <p class="humid" id="humidFour">Humidity: </p>
-                </div>
-              </div>
-              <div class="card" id="card5">
-                <div class="card-body">
-                  <h5 id="dayFive"></h5>
-                  <img id="weatherIconFive" id="weatherIconFive"></img>
-                  <p class="temp" id="tempFive">Temp: </p>
-                  <p class="wind" id="windFive">Wind: </p>
-                  <p class="humid" id="humidFive">Humidity:</p>
-                </div>
-              </div>
-          </div>
+        </div>
+  
+        </div>
       </div>
       </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
