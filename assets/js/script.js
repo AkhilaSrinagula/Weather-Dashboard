@@ -20,6 +20,8 @@ $(document).ready(function () {
   var fiveDayTemp5 = $("#tempFive");
   var fiveDayHumid5 = $("#humidFive");
   var fiveDayWind5 = $("#windFive");
+  var currentUV = $("#uvIndex");
+  var icon = $("#weatherIcon")
 
   loadcityName();
 
@@ -34,6 +36,8 @@ $(document).ready(function () {
       .then((response) => response.json())
       .then(function (data) {
         console.log("This is Data", data);
+        icon.text(data.weather[0].icon);
+        console.log(data.weather[0].icon);
         temperature.text("Temp: " + data.main.temp);
         console.log(data.main.temp);
         wind.text("Wind: " + data.wind.speed);
@@ -57,46 +61,48 @@ $(document).ready(function () {
         console.log(data);
         data = {
           daily: [
-            fiveDayTemp.text("Temp: " + data.daily[0].temp),
-            console.log(data.daily[0].temp),
+            fiveDayTemp.text("Temp: " + data.daily[0].temp.max),
+            console.log(data.daily[0].temp.max),
             fiveDayHumid.text("Humidity: " + data.daily[0].humidity),
             console.log(data.daily[0].humidity),
             fiveDayWind.text("Wind: " + data.daily[0].wind_speed),
             console.log(data.daily[0].wind_speed),
 
-            fiveDayTemp2.text("Temp: " + data.daily[1].temp),
-            console.log(data.daily[1].temp),
+            fiveDayTemp2.text("Temp: " + data.daily[1].temp.max),
+            console.log(data.daily[1].temp.max),
             fiveDayHumid2.text("Humidity: " + data.daily[1].humidity),
             console.log(data.daily[1].humidity),
             fiveDayWind2.text("Wind: " + data.daily[1].wind_speed),
             console.log(data.daily[1].wind_speed),
 
-            fiveDayTemp3.text("Temp: " + data.daily[2].temp),
-            console.log(data.daily[2].temp),
+            fiveDayTemp3.text("Temp: " + data.daily[2].temp.max),
+            console.log(data.daily[2].temp.max),
             fiveDayHumid3.text("Humidity: " + data.daily[2].humidity),
             console.log(data.daily[2].humidity),
             fiveDayWind3.text("Wind: " + data.daily[2].wind_speed),
             console.log(data.daily[2].wind_speed),
 
-            fiveDayTemp4.text("Temp: " + data.daily[3].temp),
-            console.log(data.daily[3].temp),
+            fiveDayTemp4.text("Temp: " + data.daily[3].temp.max),
+            console.log(data.daily[3].temp.max),
             fiveDayHumid4.text("Humidity: " + data.daily[3].humidity),
             console.log(data.daily[3].humidity),
             fiveDayWind4.text("Wind: " + data.daily[3].wind_speed),
             console.log(data.daily[3].wind_speed),
 
-            fiveDayTemp5.text("Temp: " + data.daily[4].temp),
-            console.log(data.daily[4].temp),
+            fiveDayTemp5.text("Temp: " + data.daily[4].temp.max),
+            console.log(data.daily[4].temp.max),
             fiveDayHumid5.text("Humidity: " + data.daily[4].humidity),
             console.log(data.daily[4].humidity),
             fiveDayWind5.text("Wind: " + data.daily[4].wind_speed),
             console.log(data.daily[4].wind_speed),
+
+            currentUV.text("UV Index: " + data.current.uvi),
+            console.log(data.current.uvi),
           ],
         };
       });
   });
 
-  
   //
   function loadcityName() {
     searchedCities = JSON.parse(localStorage.getItem("lscityName"));
