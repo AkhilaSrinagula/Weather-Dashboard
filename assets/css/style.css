@@ -6,33 +6,27 @@ header {
     color: white;
     
   }
+#currentWeather {
+  padding: 5%;
+  
+}
+#currentLocation {
+  height : 40%;
+}
+#five-cards{
+margin-top :15%;
+}
+#currentDay {
+  font-weight:bolder;
+  font-size:20px;
+  
+}
+#card1,#card2,#card3,#card4,#card5 {
+  background-color:rgb(206, 228, 250);
+  
+}
 
-   /* #searchBtn  {
-    background-color: #75abdd;
-     background-size: 1px 50px; 
-    color: white;
-    font-size: 20px;
-    padding: 5px 42%;
-    cursor: pointer;
-    margin-top: 15px;
-    border:1px;
-  }  */
-
-  h2 {
-      margin-left:1%;
-      font-size: 30px;
-  }
-
-  /* .card {
-    border-radius: 12px;
-    border:transparent;
-  } */
-
-  /* .card-body {
-    display: inline-block;
-    padding: 0.25rem;
-    text-align: left;
-  }  */
+   
 
   
   @media screen and (max-width: 800px) {
