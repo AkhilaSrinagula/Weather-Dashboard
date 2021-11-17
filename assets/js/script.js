@@ -21,13 +21,24 @@ $(document).ready(function () {
   var fiveDayHumid5 = $("#humidFive");
   var fiveDayWind5 = $("#windFive");
   var currentUV = $("#uvIndex");
-  var icon = $("#weatherIcon")
+  
+  function addToList(cityName) {
+    var newBtn = $("<button>");
+    newBtn.text(cityName);
+    searchList.append(newBtn);
+    searchedCities.push(cityName);
+    localStorage.setItem("recentsearches",JSON.stringify(searchedCities));
+  }
 
-  loadcityName();
-
-  searchButton.click(function () {
-    console.log(inputCity.val());
-    var city = inputCity.val();
+  function loadCityName() {
+    searchedCities =[]
+    var lists = JSON.parse(localStorage.getItem("recentsearches")) || []
+    console.log(lists)
+    for (var i=0; i<lists.length; i++) {
+      addToList(lists[i]);
+    }
+  }
+  function currentWeather(city) {
     var getWeatherApi =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       city +
@@ -36,8 +47,6 @@ $(document).ready(function () {
       .then((response) => response.json())
       .then(function (data) {
         console.log("This is Data", data);
-        icon.text(data.weather[0].icon);
-        console.log(data.weather[0].icon);
         temperature.text("Temp: " + data.main.temp);
         console.log(data.main.temp);
         wind.text("Wind: " + data.wind.speed);
@@ -46,15 +55,16 @@ $(document).ready(function () {
         console.log(data.main.humidity);
         currentCity.text(data.name + currentDay);
         console.log(data.name + currentDay);
+        var iconUrl = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+        var weatherIcon = $("#weatherIcon");
+        weatherIcon.attr("src", iconUrl);
+        fiveDayForecast(data.coord.lat,data.coord.lon);
+        addToList(data.name);
       });
-  });
-
-  var currentCity = $("#currentDay");
-
-  searchButton.click(function () {
-    console.log(inputCity.val());
+  }
+  function fiveDayForecast(lat,long) {
     var fiveDayForecastApi =
-      "https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&appid=b0c8bb28d93f9d08fb9250393ad62966&units=imperial";
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=b0c8bb28d93f9d08fb9250393ad62966&units=imperial`;
     fetch(fiveDayForecastApi)
       .then((response) => response.json())
       .then(function (data) {
@@ -101,50 +111,16 @@ $(document).ready(function () {
           ],
         };
       });
+  }
+  var searchList = $("#searchHistoryList");
+
+  searchButton.click(function () {
+    console.log(inputCity.val());
+    var city = inputCity.val();
+    currentWeather(city);
   });
 
-  //
-  function loadcityName() {
-    searchedCities = JSON.parse(localStorage.getItem("lscityName"));
-    if (searchedCities) {
-      weatherData(searchedCities[searchedCities.length - 1]);
-    } else {
-      searchedCities = [];
-    }
-  }
-  //Dynamically building City List under search box
-  function citySearchList() {
-    $("#cityList").empty();
-    var count = 0;
-    for (var i = searchedCities.length - 1; i >= 0; i--) {
-      if (count++ < 9) {
-        var newBtn = $("<button>")
-          .attr("class", "listBtn btn")
-          .attr("city-name", searchedCities[i])
-          .text(searchedCities[i]);
-        $("#cityList").append(newBtn);
-      }
-    }
-    $(".listBtn").on("click", function (event) {
-      var city = $(this).text();
-      weatherData(city);
-    });
-  }
-  function saveCity() {
-    localStorage.setItem("lscity", JSON.stringify(searchedCities));
-  }
-
-  // Loads city on refresh only add cities if not in the list
-  function weatherData(cityName) {
-    $("#addcityName").val("");
-    if (searchedCities.includes(cityName) === false) {
-      searchedCities.push(cityName);
-      saveCity();
-    }
-    citySearchList();
-    weatherToday(cityName);
-    forecastDeck(cityName);
-  }
+  var currentCity = $("#currentDay");
 
   var currentDay = moment().format("l");
   $("#currentDay").text(currentDay);
@@ -163,4 +139,5 @@ $(document).ready(function () {
 
   var dayFive = moment().add(5, "days").format("l");
   $("#dayFive").text(dayFive.slice(0, 10));
+  loadCityName();
 });
