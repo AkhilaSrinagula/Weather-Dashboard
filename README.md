@@ -9,3 +9,10 @@ This is a Weather Dashboard where the user can see the weather outlook for multi
 
 ## Application Screenshot
 
+![View](assets/Weather-Dashboard.png)
+
+To get this project up and running, please follow the links below
+
+URL Link: 
+
+Repo Link: 
