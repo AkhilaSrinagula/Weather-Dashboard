@@ -92,6 +92,9 @@ $(document).ready(function () {
             console.log(data.daily[0].humidity),
             fiveDayWind.text("Wind: " + data.daily[0].wind_speed + " mph"),
             console.log(data.daily[0].wind_speed),
+            (iconUrlOne = `http://openweathermap.org/img/w/${data.daily[0].weather[0].icon}.png`),
+            (weatherIconOne = $("#weatherIconOne")),
+            weatherIconOne.attr("src", iconUrlOne),
 
             fiveDayTemp2.text("Temp: " + data.daily[1].temp.max + " °F"),
             console.log(data.daily[1].temp.max),
@@ -99,6 +102,9 @@ $(document).ready(function () {
             console.log(data.daily[1].humidity),
             fiveDayWind2.text("Wind: " + data.daily[1].wind_speed + " mph"),
             console.log(data.daily[1].wind_speed),
+            (iconUrlTwo = `http://openweathermap.org/img/w/${data.daily[1].weather[0].icon}.png`),
+            (weatherIconTwo = $("#weatherIconTwo")),
+            weatherIconTwo.attr("src", iconUrlTwo),
 
             fiveDayTemp3.text("Temp: " + data.daily[2].temp.max + " °F"),
             console.log(data.daily[2].temp.max),
@@ -106,6 +112,9 @@ $(document).ready(function () {
             console.log(data.daily[2].humidity),
             fiveDayWind3.text("Wind: " + data.daily[2].wind_speed + " mph"),
             console.log(data.daily[2].wind_speed),
+            (iconUrlThree = `http://openweathermap.org/img/w/${data.daily[2].weather[0].icon}.png`),
+            (weatherIconThree = $("#weatherIconThree")),
+            weatherIconThree.attr("src", iconUrlThree),
 
             fiveDayTemp4.text("Temp: " + data.daily[3].temp.max + " °F"),
             console.log(data.daily[3].temp.max),
@@ -113,6 +122,9 @@ $(document).ready(function () {
             console.log(data.daily[3].humidity),
             fiveDayWind4.text("Wind: " + data.daily[3].wind_speed + " mph"),
             console.log(data.daily[3].wind_speed),
+            (iconUrlFour = `http://openweathermap.org/img/w/${data.daily[3].weather[0].icon}.png`),
+            (weatherIconFour = $("#weatherIconFour")),
+            weatherIconFour.attr("src", iconUrlFour),
 
             fiveDayTemp5.text("Temp: " + data.daily[4].temp.max + " °F"),
             console.log(data.daily[4].temp.max),
@@ -120,14 +132,14 @@ $(document).ready(function () {
             console.log(data.daily[4].humidity),
             fiveDayWind5.text("Wind: " + data.daily[4].wind_speed + " mph"),
             console.log(data.daily[4].wind_speed),
+            (iconUrlFive = `http://openweathermap.org/img/w/${data.daily[4].weather[0].icon}.png`),
+            (weatherIconFive = $("#weatherIconFive")),
+            weatherIconFive.attr("src", iconUrlFive),
 
             currentUV.text("UV Index: " + data.current.uvi),
             console.log(data.current.uvi),
           ],
         };
-        var iconUrlOne = `http://openweathermap.org/img/w/${data.daily[0].weather[0].icon}.png`;
-        var weatherIconOne = $("#weatherIconOne");
-        weatherIconOne.attr("src", iconUrlOne);
       });
   }
 
