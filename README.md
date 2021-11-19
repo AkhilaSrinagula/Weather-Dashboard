@@ -13,6 +13,6 @@ This is a Weather Dashboard where the user can see the weather outlook for multi
 
 To get this project up and running, please follow the links below
 
-URL Link: 
+URL Link: https://akhilasrinagula.github.io/Weather-Dashboard/
 
-Repo Link: 
+Repo Link: https://github.com/AkhilaSrinagula/Weather-Dashboard.git
